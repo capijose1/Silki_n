@@ -15,8 +15,8 @@
         <div class="col-md-8">
             <div class="card">
 
-                <div class="card-header">Crear Autores</div>
-                <form action="/autor" method="GET" role="search">
+                <div class="card-header">Lista de contenidos</div>
+                <form action="/lista" method="GET" role="search">
                     
                     <div class="input-group">
                         <span class="input-group-btn mr-4 ">
@@ -24,7 +24,7 @@
                                 Buscar
                             </button>
                         </span>
-                        <input type="text" class="form-control " name="nom_autor" placeholder="Nombre de la categoria" id="term">
+                        <input type="text" class="form-control " name="name" placeholder="Nombre del contenido" id="term">
                     </div>
                    
                 </form>
@@ -35,77 +35,24 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">Nombre</th>
-                                        <th scope="col">Fecha</th>
-                                        <th scope="col">Ciudad Natal</th>
-                                        <th scope="col">Descripción</th>
-                                        <th scope="col">Editar</th>
+                                        <th scope="col">Precio Actual</th>
+                                        <th scope="col">Extensión </th>
+                                        <th scope="col">Autor</th>
+                                        <th scope="col">Categoria</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($autores as $autor)
+                                    @foreach($contenidos as $contenido)
                                     <tr>
-                                        <td>{{ $autor->nombre }}</td>
-                                        <td>{{ $autor->fecha_nacimiento }}</td>
-                                        <td>{{ $autor->ciudad_natal }}</td>
-                                        <td>{{ $autor->detalle }}</td>
-                                        <td>
-                                            <a href=""  class="btn btn-outline-success" data-toggle="modal" data-target="#editarModal{{$autor->id}}" data-name="{{$autor->nombre}}" > Editar</a>
-                                                <div class="modal fade" id="editarModal{{$autor->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="editarModal{{$autor->id}}">Editar Autor</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <form method="POST" action="{{route('autor.update',$autor->id)}}">
-                                                            @csrf @method('PUT')
-                                                            <div class="form-group">
-                                                                <label for="recipient-name" class="col-form-label">Nombre:</label>
-                                                                <input type="text" class="form-control" name="nombre" id="recipient-name" value="{{$autor->nombre}} ">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="message-text" class="col-form-label">Fecha:</label>
-                                    
-                                                                <input type="text" class="form-control" name="fecha" value="{{$autor->fecha_nacimiento}}" id="message-text">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="recipient-name" class="col-form-label">Ciudad:</label>
-                                                                <input type="text" class="form-control" name="ciudad" id="recipient-name" value="{{$autor->ciudad_natal}} ">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="recipient-name" class="col-form-label">Descripción:</label>
-                                                                <input type="text" class="form-control" name="detalle" id="recipient-name" value="{{$autor->detalle}} ">
-                                                            </div>
-                                                            
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-                                                            <button type="submit"  class="btn btn-success"><span class="glyphicon glyphicon-check"></span> Editar Autor</button>
-                                                            </form>
-                                                        </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-            
-                                        </td>
+                                        <td>{{ $contenido->nombre}}</td>
+                                        <td>S/.{{$contenido->precio-$contenido->descuento*$contenido->precio/100}}</td>
+                                        <td>{{ $contenido->tipo}}</td>
+                                        <td>{{ $contenido->autor}}</td>
+                                        <td>{{ $contenido->categoria }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>
-            
                             </table>
-                            @if (isset($_GET['nom_autor']))
-                            {{ 
-                                $autores->appends(['nom_autor' => $_GET['nom_autor']])->links('pagination::bootstrap-4') 
-                            }}
-                            
-                            @else
-                            {{ 
-                                $autores->links('pagination::bootstrap-4') 
-                            }}
-                            @endif
                         </div>
             </div>
         </div>

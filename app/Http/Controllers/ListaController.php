@@ -19,10 +19,25 @@ use Illuminate\Support\Facades\Hash;
 
 class ListaController extends Controller
 {
-    public function index(){
-        $categorias=DB::select("select * from categoria");
-        $descuentos=DB::select("select * from descuento");
-        $autores=DB::select("select * from autor");
-        return view('lista',['categorias' => $categorias,'descuentos' => $descuentos,'autores' => $autores]);
+    public function index(Request $request){
+        if(empty($request)){
+            $request='';
+        }
+        $texto=trim($request->get('name'));
+        $contenidos=DB::select("SELECT contenido.*, descuento.descuento ,autor.nombre as 'autor' ,categoria.nom_categoria as 'categoria'
+        FROM contenido
+        INNER JOIN descuento
+        ON descuento.id = contenido.id_descuento
+        INNER JOIN autor
+        ON autor.id = contenido.id_autor
+        INNER JOIN categoria
+        ON categoria.id = contenido.id_cateogoria
+        WHERE contenido.nombre LIKE '%' '$texto' '%';
+        ");
+        return view('lista',['contenidos' => $contenidos]);
+    }
+    public function update(Request $request,$id){
+        $affected =  DB::update('update descuento set inicio = ?, fin = ?, descuento = ? where id = ?', [ $request->inicio,$request->fin,$request->descuento ,$id]);
+        return redirect('promocion')->with('edit','La promoción se edito con exito');
     }
 }

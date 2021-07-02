@@ -22,12 +22,12 @@ Route::resource('categoria', 'App\Http\Controllers\CategoriaController');
 Route::resource('contenido', 'App\Http\Controllers\ContenidoController');
 Route::resource('autor', 'App\Http\Controllers\AutorController');
 Route::resource('promocion', 'App\Http\Controllers\PromocionController');
+Route::resource('lista', 'App\Http\Controllers\ListaController');
 
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/user', [App\Http\Controllers\HomeController::class,'User'])->name('user');
 Route::get('/config', [App\Http\Controllers\Config\ConfigController::class, 'index'])->name('config');
 Route::get('/config/eliminar', [App\Http\Controllers\Config\ConfigController::class, 'delete_account'])->name('config');
 Route::get('/config/cuenta', [App\Http\Controllers\Config\ConfigController::class, 'datos_personales'])->name('config');
@@ -37,3 +37,4 @@ Route::get('/autor', [App\Http\Controllers\AutorController::class, 'index'])->na
 Route::post('/contenido', 'App\Http\Controllers\ContenidoController@subirArchivo')->name('contenido');
 Route::get('/promocion', [App\Http\Controllers\PromocionController::class, 'index'])->name('promocion');
 Route::get('/lista', [App\Http\Controllers\ListaController::class, 'index'])->name('lista');
+Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('lista');

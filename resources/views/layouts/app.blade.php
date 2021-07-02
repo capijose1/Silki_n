@@ -80,6 +80,11 @@
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
+                                @if(Auth::user()->tipo_cuenta==0)
+                                <a class="dropdown-item" href="/biblioteca">
+                                    {{ __('Biblioteca') }}
+                                </a> 
+                                @endif
                                 @if(Auth::user()->estado==0)
                                 <a class="dropdown-item" href="/config">
                                     {{ __('Config') }}
