@@ -36,3 +36,4 @@ Route::get('/contenido', [App\Http\Controllers\ContenidoController::class, 'inde
 Route::get('/autor', [App\Http\Controllers\AutorController::class, 'index'])->name('autor');
 Route::post('/contenido', 'App\Http\Controllers\ContenidoController@subirArchivo')->name('contenido');
 Route::get('/promocion', [App\Http\Controllers\PromocionController::class, 'index'])->name('promocion');
+Route::get('/lista', [App\Http\Controllers\ListaController::class, 'index'])->name('lista');

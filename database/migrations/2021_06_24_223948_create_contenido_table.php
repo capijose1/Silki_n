@@ -16,6 +16,7 @@ class CreateContenidoTable extends Migration
         Schema::create('contenido', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
+            $table->string('nombre_guardado');
             $table->string('tipo');
             $table->string('estado');
             $table->float('precio');

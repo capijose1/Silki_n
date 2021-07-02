@@ -47,7 +47,7 @@
                                     <img class="w-50 p-3 " src="https://www.abd.es/wp-content/uploads/2016/02/icono-promociones-300x300.png" class="img-thumbnail" style="display: block;margin-left: auto; margin-right: auto;">
                                     </div>
                                     <div class="col-8">
-                                        <a class="btn btn-primary btn-lg btn-block" href="#" role="button" style="height: 4rem;">Crear Promocion</a>
+                                        <a class="btn btn-primary btn-lg btn-block" href="/promocion" role="button" style="height: 4rem;">Crear Promocion</a>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -75,7 +75,7 @@
                                     <a href="/autor" class="btn btn-primary btn-lg btn-block"  role="button" aria-pressed="true">Agregar Autor</a>
                                 </div>
                                 <div class="col" style="height: 60px;">
-                                    <button type="button" class="btn btn-primary btn-lg btn-block">Otra opción</button>
+                                    <a href="/lista" class="btn btn-primary btn-lg btn-block"  role="button" aria-pressed="true">Lista de Contenidos multimedia</a>
                                 </div>
                             </div>
                             </div>
